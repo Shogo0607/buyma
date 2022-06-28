@@ -30,8 +30,8 @@ max_list =  int(st.sidebar.number_input("1Pageの検索商品数",value=2))
 max_page =   int(st.sidebar.number_input("検索ページ数",value=2))
 item = st.sidebar.selectbox("ブランド名",['HERMES','CHANEL','CHRISTIAN DIOR','LUIS VUITTON'])
 
-now = dt.now()
-past_day = now - datetime.timedelta(days = 1,hours=9)
+now = dt.now() + datetime.timedelta(hours = 9)
+past_day = now - datetime.timedelta(days = 1)
 max_day =  int(st.sidebar.number_input("本日から過去遡って検索する日数",value=1))
 
 if item == "HERMES":
@@ -49,7 +49,7 @@ if st.sidebar.button("検索開始"):
     st.markdown("1. 検索ツールを立ち上げます。")
 
     with st.spinner("現在検索ツール立ち上げ中"):
-        now = dt.now() - datetime.timedelta(hours=9)
+        now = dt.now() + datetime.timedelta(hours=9)
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')  

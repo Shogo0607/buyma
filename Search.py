@@ -9,6 +9,14 @@ from selenium.webdriver.common.keys import Keys
 import datetime
 from datetime import datetime as dt
 import streamlit as st
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.firefox import GeckoDriverManager
 
 st.set_page_config(page_title="BUYMA 問い合わせ検索ツール")
 
@@ -41,14 +49,21 @@ if st.sidebar.button("検索開始"):
 
     with st.spinner("現在検索ツール立ち上げ中"):
         now = dt.now()
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')  
-        chrome_options.add_argument('--disable-dev-shm-usage') 
-        chrome_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
-        print('>処理開始')
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-        driver.maximize_window()
+        # chrome_options = webdriver.ChromeOptions()
+        # chrome_options.add_argument('--headless')
+        # chrome_options.add_argument('--no-sandbox')  
+        # chrome_options.add_argument('--disable-dev-shm-usage') 
+        # chrome_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
+        # print('>処理開始')
+        # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        # driver.maximize_window()
+        firefoxOptions = Options()
+        firefoxOptions.add_argument("--headless")
+        service = Service(GeckoDriverManager().install())
+        driver = webdriver.Firefox(
+            options=firefoxOptions,
+            service=service,
+        )
         driver.implicitly_wait(5)
 
         item_list = list()

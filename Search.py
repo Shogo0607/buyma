@@ -89,7 +89,9 @@ if st.sidebar.button("検索開始"):
 
                 item_list_xpath = '//*[@id="n_ResultList"]/ul/li['+str(shop_id)+']/div[3]/div[1]/a'
                 item_list_text = driver.find_element(By.XPATH, item_list_xpath).text
-                driver.find_element(By.XPATH, item_list_xpath).click()
+                # driver.find_element(By.XPATH, item_list_xpath).click()
+                element = driver.find_element(By.XPATH, item_list_xpath)
+                driver.execute_script("arguments[0].click();", element)
                 time.sleep(2)
                 with st.spinner(item_list_text+"の問い合わせを検索中..."):
                     bar.progress(progress)

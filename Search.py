@@ -30,7 +30,7 @@ max_list =  int(st.sidebar.number_input("1Pageの検索商品数",value=2))
 max_page =   int(st.sidebar.number_input("検索ページ数",value=2))
 item = st.sidebar.selectbox("ブランド名",['HERMES','CHANEL','CHRISTIAN DIOR','LUIS VUITTON'])
 
-now = dt.now(tzinfo=datetime.timezone.utc)
+now = dt.now(JST)
 past_day = now - datetime.timedelta(days = 1)
 max_day =  int(st.sidebar.number_input("本日から過去遡って検索する日数",value=1))
 

@@ -49,21 +49,14 @@ if st.sidebar.button("検索開始"):
 
     with st.spinner("現在検索ツール立ち上げ中"):
         now = dt.now()
-        # chrome_options = webdriver.ChromeOptions()
-        # chrome_options.add_argument('--headless')
-        # chrome_options.add_argument('--no-sandbox')  
-        # chrome_options.add_argument('--disable-dev-shm-usage') 
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')  
+        chrome_options.add_argument('--disable-dev-shm-usage') 
         # chrome_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
-        # print('>処理開始')
-        # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-        # driver.maximize_window()
-        firefoxOptions = Options()
-        firefoxOptions.add_argument("--headless")
-        service = Service(GeckoDriverManager().install())
-        driver = webdriver.Firefox(
-            options=firefoxOptions,
-            service=service,
-        )
+        print('>処理開始')
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        driver.maximize_window()
         driver.implicitly_wait(5)
 
         item_list = list()
